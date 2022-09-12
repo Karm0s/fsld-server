@@ -9,15 +9,18 @@ app = Flask(__name__)
 socketio = SocketIO(app=app, cors_allowed_origins='*')
 
 
-def construct_response_object(words, probabilities):
-    response = []
-    print(words)
-    print(probabilities)
+def construct_response_object(words, np_probabilities):
+    probabilities = []
     for (i, word) in enumerate(words):
-        response.append(
-            {'word': word, 'probability': float(probabilities[0][i])})
-    print(response)
-    return response
+        probabilities.append(
+            {'word': word, 'probability': float(np_probabilities[0][i])})
+
+    max_probability = max(probabilities, key=lambda x: x['probability'])
+
+    return {
+        'maxProbability': max_probability,
+        'probabilities': probabilities
+    }
 
 
 @socketio.on('connect')
@@ -28,17 +31,13 @@ def test_connect():
 
 @socketio.on('mediapipe-data')
 def receive_mediapipe_data(data):
-    print('[!] received array of data of length:')
     new_data = np.expand_dims(np.asarray(data), axis=0)
-    print(new_data.shape)
     res = model.predict(new_data)
     response = construct_response_object(model.get_words_list(), res)
     socketio.emit('predictions', response)
 
 
 if __name__ == "__main__":
-    print('** Loading Model')
     model = DLModel()
-    print('** Loading Model')
     model.load_weights('new_weights.h5')
     socketio.run(app)
