@@ -1,4 +1,4 @@
-import pandas as pd
+import json
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import LSTM, Dense
@@ -42,8 +42,9 @@ class DLModel:
         return self.words
 
     def load_words_info_file(self, file_path):
-        data = pd.read_json(file_path).set_index('word').to_dict()
-        return data['count'].keys()
+        with open(file_path, encoding='utf8') as file:
+            data = json.load(file)
+            return [i['word'] for i in data]
 
     def get_dataset_words(self):
         words = []

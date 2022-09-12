@@ -7,6 +7,8 @@ from dl_models import DLModel
 
 app = Flask(__name__)
 socketio = SocketIO(app=app, cors_allowed_origins='*')
+model = DLModel()
+model.load_weights('new_weights.h5')
 
 
 def construct_response_object(words, np_probabilities):
@@ -35,9 +37,3 @@ def receive_mediapipe_data(data):
     res = model.predict(new_data)
     response = construct_response_object(model.get_words_list(), res)
     socketio.emit('predictions', response)
-
-
-if __name__ == "__main__":
-    model = DLModel()
-    model.load_weights('new_weights.h5')
-    socketio.run(app)
