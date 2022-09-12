@@ -7,7 +7,7 @@ from tensorflow.python.keras.optimizer_v2.adam import Adam
 
 class DLModel:
     def __init__(self) -> None:
-        self.words = self.load_words_info_file('words.json')
+        self.words = self.load_words_info_file('./app/words.json')
         self.label_map = self.create_labels(self.words)
         self.sequence_length = 30
         self.model = self.create_lstm_model()
@@ -45,10 +45,3 @@ class DLModel:
         with open(file_path, encoding='utf8') as file:
             data = json.load(file)
             return [i['word'] for i in data]
-
-    def get_dataset_words(self):
-        words = []
-        with open('word_list.txt', encoding='utf8') as file:
-            for line in file.readlines():
-                words.extend(line.split(','))
-        return words

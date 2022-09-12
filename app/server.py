@@ -3,12 +3,12 @@ from flask_socketio import SocketIO
 
 import numpy as np
 
-from dl_models import DLModel
+from .dl_models import DLModel
 
 app = Flask(__name__)
 socketio = SocketIO(app=app, cors_allowed_origins='*')
 model = DLModel()
-model.load_weights('new_weights.h5')
+model.load_weights('./app/new_weights.h5')
 
 
 def construct_response_object(words, np_probabilities):
