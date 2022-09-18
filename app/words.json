@@ -1,17 +1,7 @@
 [
-	{ "word": "AUSSI", "count": 300 },
-	{ "word": "COMPRENDRE", "count": 300 },
-	{ "word": "DANS", "count": 300 },
-	{ "word": "DIRE", "count": 300 },
-	{ "word": "ECOLE", "count": 300 },
-	{ "word": "EXEMPLE", "count": 300 },
-	{ "word": "OUI", "count": 500 },
-	{ "word": "PERSONNE", "count": 300 },
-	{ "word": "POURQUOI", "count": 300 },
-	{ "word": "QUOI", "count": 300 },
-	{ "word": "REGARDER", "count": 300 },
-	{ "word": "SAVOIR", "count": 300 },
-	{ "word": "SI", "count": 300 },
-	{ "word": "VRAI", "count": 300 },
-	{ "word": "SOURD", "count": 300 }
+	{ "word": "AUSSI", "count": 450 },
+	{ "word": "COMPRENDRE", "count": 450 },
+	{ "word": "DANS", "count": 450 },
+	{ "word": "OUI", "count": 450 },
+	{ "word": "AVANT", "count": 450 }
 ]
